@@ -26,13 +26,13 @@ func MapHandler(pathsToUrls map[string]string, fallback http.Handler) http.Handl
 	}
 }
 
-type mapping struct {
+type pathMapping struct {
 	Path string
 	URL  string
 }
 
-func parseYAML(yml []byte) ([]mapping, error) {
-	var mappings []mapping
+func parseYAML(yml []byte) ([]pathMapping, error) {
+	var mappings []pathMapping
 
 	err := yaml.Unmarshal(yml, &mappings)
 	if err != nil {
@@ -42,8 +42,8 @@ func parseYAML(yml []byte) ([]mapping, error) {
 	return mappings, nil
 }
 
-func parseJSON(jsn []byte) ([]mapping, error) {
-	var mappings []mapping
+func parseJSON(jsn []byte) ([]pathMapping, error) {
+	var mappings []pathMapping
 
 	err := json.Unmarshal(jsn, &mappings)
 	if err != nil {
@@ -53,7 +53,7 @@ func parseJSON(jsn []byte) ([]mapping, error) {
 	return mappings, nil
 }
 
-func buildMap(mappings []mapping) map[string]string {
+func buildMap(mappings []pathMapping) map[string]string {
 	pathMap := make(map[string]string)
 	for _, m := range mappings {
 		pathMap[m.Path] = m.URL
