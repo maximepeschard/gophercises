@@ -10,19 +10,23 @@
     <title>{{.Title}}</title>
 </head>
 <body>
-    <section id="arc-story">
+    <section id="arc-text">
         <h1>{{.Title}}</h1>
-        {{range $index, $storyPart := .Story}}
-        <p>{{$storyPart}}</p>
+        {{range $index, $textPart := .Text}}
+        <p>{{$textPart}}</p>
         {{end}}
     </section>
 
     <section id="arc-options">
+        {{if .Options}}
         <ul>
             {{range $index, $option := .Options}}
             <li><a href="{{$option.TargetArc}}">{{$option.Text}}</a></li>
             {{end}}
         </ul>
+        {{else}}
+        <h2>The End !</h2>
+        {{end}}
     </section>
 </body>
 </html>
