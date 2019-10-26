@@ -1,0 +1,29 @@
+{{define "arc"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>{{template "style"}}</style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>{{.Title}}</title>
+</head>
+<body>
+    <section id="arc-story">
+        <h1>{{.Title}}</h1>
+        {{range $index, $storyPart := .Story}}
+        <p>{{$storyPart}}</p>
+        {{end}}
+    </section>
+
+    <section id="arc-options">
+        <ul>
+            {{range $index, $option := .Options}}
+            <li><a href="{{$option.TargetArc}}">{{$option.Text}}</a></li>
+            {{end}}
+        </ul>
+    </section>
+</body>
+</html>
+{{end}}
