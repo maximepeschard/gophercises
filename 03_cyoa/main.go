@@ -30,7 +30,13 @@ func (sh storyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		arcName = "intro"
 	}
 
-	sh.tmpl.ExecuteTemplate(w, "arc", sh.stry.Arcs[arcName])
+	arc, prs := sh.stry.Arcs[arcName]
+	if !prs {
+		sh.tmpl.ExecuteTemplate(w, "404", "intro")
+	} else {
+		sh.tmpl.ExecuteTemplate(w, "arc", arc)
+	}
+
 }
 
 func main() {
